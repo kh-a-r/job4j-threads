@@ -13,12 +13,11 @@ public class ConsoleProgress implements Runnable {
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
-                Thread.sleep(500);
-                System.out.print("\rLoading : "  + "|");
-                Thread.sleep(500);
-                System.out.print("\rLoading : "  + "/");
-                Thread.sleep(500);
-                System.out.print("\rLoading : "  + "\\");
+                for (int i = 0; i < 3; i++) {
+                    char[] arr = new char[]{'\\', '|', '/'};
+                    Thread.sleep(500);
+                    System.out.print("\rLoading : " + arr[i]);
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
