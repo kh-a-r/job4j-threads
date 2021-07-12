@@ -6,17 +6,20 @@ public class ConsoleProgress implements Runnable {
         progress.start();
         Thread.sleep(1000); /* симулируем выполнение параллельной задачи в течение 1 секунды. */
         //progress.interrupt();
-
     }
 
     @Override
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
+                char[] arr = new char[]{'\\', '|', '/'};
                 for (int i = 0; i < 3; i++) {
-                    char[] arr = new char[]{'\\', '|', '/'};
-                    Thread.sleep(500);
-                    System.out.print("\rLoading : " + arr[i]);
+                    if (i != arr.length) {
+                        Thread.sleep(500);
+                        System.out.print("\rLoading : " + arr[i]);
+                    } else {
+                        i = 0;
+                    }
                 }
             }
         } catch (InterruptedException e) {
