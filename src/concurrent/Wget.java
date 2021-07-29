@@ -4,8 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
-import java.time.Instant;
+
 
 public class Wget  implements Runnable {
     private final String url;
@@ -20,7 +19,7 @@ public class Wget  implements Runnable {
     public void run() {
 
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream("pom_tmp.xml")) {
+             FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test.txt")) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
             long start = System.currentTimeMillis();
@@ -31,6 +30,7 @@ public class Wget  implements Runnable {
                 if (1024 / timeSpent < speed) {
                     Thread.sleep(1024/speed - timeSpent);
                 }
+                start = System.currentTimeMillis();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,8 +41,8 @@ public class Wget  implements Runnable {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String url = "https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml";
-        int speed = Integer.parseInt("1");
+        String url = args[0];
+        int speed = Integer.parseInt(args[1]);
         Thread wget = new Thread(new Wget(url, speed));
         wget.start();
         wget.join();
