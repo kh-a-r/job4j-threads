@@ -27,7 +27,7 @@ public class Wget  implements Runnable {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
                 long finish = System.currentTimeMillis();
                 long timeSpent = finish - start;
-                if (1024 / timeSpent < speed) {
+                if (1024 / timeSpent < speed && timeSpent != 0) {
                     Thread.sleep(1024/speed - timeSpent);
                 }
                 start = System.currentTimeMillis();
