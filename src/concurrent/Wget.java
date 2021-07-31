@@ -17,7 +17,6 @@ public class Wget  implements Runnable {
 
     @Override
     public void run() {
-
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
              FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test.txt")) {
             byte[] dataBuffer = new byte[1024];
@@ -27,7 +26,7 @@ public class Wget  implements Runnable {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
                 long finish = System.currentTimeMillis();
                 long timeSpent = finish - start;
-                if (1024 / timeSpent < speed && timeSpent != 0) {
+                if (1024 / timeSpent < speed) {
                     Thread.sleep(1024/speed - timeSpent);
                 }
                 start = System.currentTimeMillis();
@@ -41,11 +40,14 @@ public class Wget  implements Runnable {
 
 
     public static void main(String[] args) throws InterruptedException {
-        String url = args[0];
-        int speed = Integer.parseInt(args[1]);
-        Thread wget = new Thread(new Wget(url, speed));
-        wget.start();
-        wget.join();
+//        if(args.length < 2) {
+//            System.out.println("Параметры запуска заданы некорректно");
+//        }
+            String url = args[0];
+            int speed = Integer.parseInt(args[1]);
+            Thread wget = new Thread(new Wget(url, speed));
+            wget.start();
+            wget.join();
     }
 }
 
