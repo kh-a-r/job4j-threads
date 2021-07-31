@@ -40,9 +40,9 @@ public class Wget  implements Runnable {
 
 
     public static void main(String[] args) throws InterruptedException {
-//        if(args.length < 2) {
-//            System.out.println("Параметры запуска заданы некорректно");
-//        }
+        if(args.length < 2) {
+            System.out.println("Параметры запуска заданы некорректно.");
+        }
             String url = args[0];
             int speed = Integer.parseInt(args[1]);
             Thread wget = new Thread(new Wget(url, speed));
