@@ -5,6 +5,6 @@ public class Reset {
         int i = 2;
         int sum = 4;
         sum = i + sum;
-        System.out.println("Сумма =  " + sum );
+        System.out.println("Сумма =  " + sum);
     }
 }
