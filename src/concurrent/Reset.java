@@ -7,4 +7,7 @@ public class Reset {
         sum = i + sum;
         System.out.println("Сумма =  " + sum);
     }
+    public final class Node {
+
+    }
 }
